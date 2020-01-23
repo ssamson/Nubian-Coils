@@ -1,49 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: #f6f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
-}
-
-h1 {
-  font-weight: bold;
-  margin: 0;
-}
-
-h2 {
-  text-align: center;
-}
-
-p {
-  font-size: 14px;
-  font-weight: 100;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  margin: 20px 0 30px;
-}
-
-span {
-  font-size: 12px;
-}
-
-a {
-  color: #333;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 15px 0;
-}
-
-button {
+.sign-in-sign-up button {
   border-radius: 20px;
   border: 1px solid #ff4b2b;
   background-color: #ff4b2b;
@@ -56,20 +11,20 @@ button {
   transition: transform 80ms ease-in;
 }
 
-button:active {
+.sign-in-sign-up button:active {
   transform: scale(0.95);
 }
 
-button:focus {
+.sign-in-sign-up button:focus {
   outline: none;
 }
 
-button.ghost {
+.sign-in-sign-up button.ghost {
   background-color: transparent;
   border-color: #ffffff;
 }
 
-form {
+.sign-in-sign-up form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -80,7 +35,7 @@ form {
   text-align: center;
 }
 
-input {
+.sign-in-sign-up input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
@@ -88,7 +43,7 @@ input {
   width: 100%;
 }
 
-.container {
+.sign-in-sign-up {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -112,7 +67,7 @@ input {
   z-index: 2;
 }
 
-.container.right-panel-active .sign-in-container {
+.sign-in-sign-up.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
 
@@ -123,7 +78,7 @@ input {
   z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.sign-in-sign-up.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -155,14 +110,14 @@ input {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.sign-in-sign-up.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: #181818;
+  background: -webkit-linear-gradient(to right, #575656, #181818);
+  background: linear-gradient(to right, #575656, #181818);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -175,7 +130,7 @@ input {
   transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.sign-in-sign-up.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
@@ -198,7 +153,7 @@ input {
   transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.sign-in-sign-up.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
@@ -207,7 +162,7 @@ input {
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.sign-in-sign-up.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
 
