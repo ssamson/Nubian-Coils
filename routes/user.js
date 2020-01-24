@@ -8,6 +8,12 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 
+// Load user
+router.get("/load", auth, async (req, res) => {
+  const user = await User.findById(req.user.id);
+  res.json(user);
+});
+
 // Login (SignIn)
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -90,6 +96,13 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   const user = await User.findById(id);
   res.json(user);
+});
+
+// Update user
+router.put("/", async (req, res) => {
+  const newUser = req.body;
+  await User.findByIdAndUpdate(newUser._id, newUser);
+  res.json(newUser);
 });
 
 module.exports = router;

@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import userIcon from "../images/user-icon.png";
 
-export default function Header() {
+export default function Header({ user, setUser }) {
+  const history = useHistory();
+  const logout = () => {
+    delete axios.defaults.headers.common["x-auth-token"];
+    localStorage.removeItem("token");
+    setUser(null);
+    history.push("/");
+  };
   return (
     <nav className="navbar navbar-light navbar-expand-lg fixed-top">
       <a href="#" className="navbar-brand display-1">
@@ -22,9 +31,29 @@ export default function Header() {
             </a>
           </li>
           <li className="navbar-item">
-            <Link to="/sign-in-sign-up" className="nav-link">
-              Sign in / Sign up
-            </Link>
+            {user ? (
+              <div>
+                <Link to={`/profile/${user._id}`}>
+                  <img
+                    src={userIcon}
+                    alt="user"
+                    width="50"
+                    class="img-thumbnail"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link to="/sign-in-sign-up" className="nav-link">
+                Sign in / Sign up
+              </Link>
+            )}
           </li>
           {/* <li className="navbar-item">
               <a href="#" className="nav-link">

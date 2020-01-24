@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignInSignUp.css";
 
-export default function SignInSignUp() {
+export default function SignInSignUp({ setUser }) {
   const container = useRef(null);
 
   const [email, setEmail] = useState("");
@@ -19,6 +19,7 @@ export default function SignInSignUp() {
     if (res.data) {
       localStorage.setItem("token", res.data.token);
       const user = res.data.user;
+      setUser(user);
       history.push(`/profile/${user._id}`);
     } else {
       alert("Invalid Credential");
@@ -33,6 +34,7 @@ export default function SignInSignUp() {
       accountType
     });
     localStorage.setItem("token", res.data.token);
+    setUser(res.data.user);
     history.push(`/profile/${res.data.user._id}`);
   };
 

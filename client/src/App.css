@@ -36,6 +36,12 @@ nav a {
   opacity: 0.7;
 }
 
+.img-thumbnail {
+  font-size: 40px;
+  width: 50px;
+  background: #b3b1af;
+}
+
 footer .fab {
   /* background: #070707; */
   color: #180757;

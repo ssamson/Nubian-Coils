@@ -63,9 +63,16 @@ export default function Profile() {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    axios.put("");
+    await axios.put("/api/user", profile);
+    alert("Your info is updated");
+  };
+
+  const logout = () => {
+    delete axios.defaults.headers.common["x-auth-token"];
+    localStorage.removeItem("token");
+    history.push("/");
   };
 
   return (
@@ -132,16 +139,9 @@ export default function Profile() {
           </div>
         ) : null}
         <div className="form-group">
-          <label htmlFor="joinDate">JOIN DATE</label>
-          <input
-            type="date"
-            className="form-control"
-            id="joinDate"
-            placeholder="Enter your join date..."
-            value={joinDate}
-            name="joinDate"
-            onChange={handleChange}
-          />
+          <span>JOIN DATE</span>
+          <br />
+          <span>{joinDate.split("T")[0]}</span>
         </div>
         {accountType === "customer" ? (
           <div className="form-group">
@@ -289,6 +289,9 @@ export default function Profile() {
         <button type="button" className="btn btn-danger">
           Cancel
         </button>
+        {/* <button type="button" className="btn btn-secondary" onClick={logout}>
+          Logout
+        </button> */}
       </form>
     </div>
   );
