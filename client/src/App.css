@@ -1,6 +1,6 @@
 body {
   background: #b3b1af;
-  padding: 200px 0;
+  padding-top: 90px;
 }
 
 /* form {
@@ -42,6 +42,55 @@ nav a {
   background: #b3b1af;
 }
 
+.jumbotron {
+  display: flex;
+  justify-content: center;
+}
+
+.jumbotron input[type="text"] {
+  width: 200px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  vertical-align: center;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.jumbotron input[type="text"]:focus {
+  width: 80%;
+  font-size: 20px;
+}
+
+.jumbotron input.extend {
+  width: 80%;
+  font-size: 20px;
+}
+
+.home {
+  display: flex;
+}
+
+.home div {
+  width: 25%;
+  height: 500px;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home div button {
+  opacity: 0;
+}
+
+.home div:hover {
+  opacity: 0.7;
+}
+
+.home div:hover button {
+  opacity: 1;
+}
+
 footer .fab {
   /* background: #070707; */
   color: #180757;
@@ -52,7 +101,8 @@ footer .fab {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin: 0 50px;
+  padding: 0 50px;
+  margin: 1rem 0;
 }
 
 .footer p {
@@ -82,4 +132,40 @@ footer .fab {
 .profile img {
   width: 200px;
   margin-bottom: 40px;
+}
+
+@media (max-width: 1100px) {
+  .home {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .home div {
+    width: 80%;
+    height: 1000px;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .home div:hover {
+    opacity: 0.9;
+  }
+
+  .home div button {
+    opacity: 1;
+    margin-top: 30rem;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 720px) {
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer .subscribe-container {
+    text-align: center;
+  }
 }

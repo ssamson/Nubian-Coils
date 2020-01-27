@@ -20,4 +20,12 @@ const UserSchema = mongoose.Schema({
   hairSalonPics: { type: String, default: "" }
 });
 
+UserSchema.index({
+  salonName: "text",
+  streetName: "text",
+  cityName: "text",
+  stateName: "text",
+  zipCode: "text"
+});
+
 module.exports = mongoose.model("User", UserSchema);

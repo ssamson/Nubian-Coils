@@ -91,6 +91,15 @@ router.post("/", async (req, res) => {
   });
 });
 
+// search Salon/stylist
+router.get("/search", async (req, res) => {
+  const text = req.query.text;
+  const data = await User.find({
+    $text: { $search: text, $caseSensitive: false }
+  });
+  res.json(data);
+});
+
 // Find user by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id;

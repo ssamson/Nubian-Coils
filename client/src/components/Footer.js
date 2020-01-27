@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="footer fixed-bottom">
-      <div>
+    <footer className="footer ">
+      <div className="subscribe-container">
         <p>SIGN UP FOR OUR NEWSLETTER</p>
         <input
           type="email"
@@ -11,7 +11,7 @@ export default function Footer() {
           placeholder="Enter Email..."
           id="email"
         />
-        <button type="submit" className="btn btn-dark">
+        <button type="submit" className="btn btn-dark mt-2">
           Subscribe
         </button>
       </div>

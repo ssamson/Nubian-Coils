@@ -26,9 +26,9 @@ export default function Header({ user, setUser }) {
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav ml-auto">
           <li className="navbar-item">
-            <a href="/" className="nav-link">
+            <Link to="/" className="nav-link">
               HOME
-            </a>
+            </Link>
           </li>
           <li className="navbar-item">
             {user ? (

@@ -41,6 +41,7 @@ function App() {
   return (
     <Router>
       <Header user={user} setUser={setUser} />
+
       <Switch>
         <Route exact path="/">
           <Home />
@@ -61,6 +62,7 @@ function App() {
           <Register />
         </Route> */}
       </Switch>
+
       <Footer />
     </Router>
   );
