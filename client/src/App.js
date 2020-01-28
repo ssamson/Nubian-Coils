@@ -11,6 +11,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SignInSignUp from "./components/SignInSignUp";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import Salons from "./components/Salons";
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -52,12 +54,15 @@ function App() {
         <Route exact path="/sign-in-sign-up">
           <SignInSignUp setUser={setUser} />
         </Route>
-        {/* <Route exact path="/Login">
-          <Login />
-        </Route> */}
         <PrivateRoute exact path="/Profile/:id">
           <Profile />
         </PrivateRoute>
+        <Route exact path="/search/:text">
+          <Salons />
+        </Route>
+        {/* <Route exact path="/Login">
+          <Login />
+        </Route> */}
         {/* <Route exact path="/Register">
           <Register />
         </Route> */}

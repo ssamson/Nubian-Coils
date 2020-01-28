@@ -79,7 +79,7 @@ nav a {
   align-items: center;
 }
 
-.home div button {
+.home div a {
   opacity: 0;
 }
 
@@ -87,7 +87,7 @@ nav a {
   opacity: 0.7;
 }
 
-.home div:hover button {
+.home div:hover a {
   opacity: 1;
 }
 
@@ -151,7 +151,7 @@ footer .fab {
     opacity: 0.9;
   }
 
-  .home div button {
+  .home div a {
     opacity: 1;
     margin-top: 30rem;
   }

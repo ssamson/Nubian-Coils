@@ -13,9 +13,9 @@ export default function Header({ user, setUser }) {
   };
   return (
     <nav className="navbar navbar-light navbar-expand-lg fixed-top">
-      <a href="#" className="navbar-brand display-1">
+      <Link to="/" className="navbar-brand display-1">
         NUBIAN COILS | Salon & Stylist Finder
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         data-toggle="collapse"

@@ -15,7 +15,7 @@ const UserSchema = mongoose.Schema({
   zipCode: { type: String, default: "" },
   phoneNumber: { type: Number, default: "" },
   salonWebsite: { type: String, default: "" },
-  salonServices: { type: Array, default: "" },
+  salonServices: { type: String, default: "" },
   salonAbout: { type: String, default: "" },
   hairSalonPics: { type: String, default: "" }
 });
@@ -25,7 +25,8 @@ UserSchema.index({
   streetName: "text",
   cityName: "text",
   stateName: "text",
-  zipCode: "text"
+  zipCode: "text",
+  salonServices: "text"
 });
 
 module.exports = mongoose.model("User", UserSchema);
