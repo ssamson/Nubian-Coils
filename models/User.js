@@ -13,11 +13,12 @@ const UserSchema = mongoose.Schema({
   cityName: { type: String, default: "" },
   stateName: { type: String, default: "" },
   zipCode: { type: String, default: "" },
-  phoneNumber: { type: Number, default: "" },
+  phoneNumber: { type: String, default: "" },
   salonWebsite: { type: String, default: "" },
-  salonServices: { type: String, default: "" },
+  salonServices: { type: Array, default: [] },
   salonAbout: { type: String, default: "" },
-  hairSalonPics: { type: String, default: "" }
+  hairSalonPics: { type: String, default: "" },
+  image: { type: mongoose.Schema.Types.ObjectId, ref: "images" }
 });
 
 UserSchema.index({

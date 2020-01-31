@@ -18,9 +18,10 @@ export default function Profile() {
     zipCode: "",
     phoneNumber: "",
     salonWebsite: "",
-    salonServices: "",
+    salonServices: [],
     salonAbout: "",
-    hairSalonPics: ""
+    hairSalonPics: "",
+    image: ""
   });
 
   const params = useParams();
@@ -29,6 +30,23 @@ export default function Profile() {
     const res = await axios.get(`/api/user/${params.id}`);
     const user = res.data;
     setProfile(user);
+  };
+
+  const handleCheckBox = async e => {
+    let { name, checked } = e.target;
+    if (checked) {
+      setProfile(prevProfile => ({
+        ...prevProfile,
+        salonServices: [...prevProfile.salonServices, name]
+      }));
+    } else {
+      setProfile(prevProfile => ({
+        ...prevProfile,
+        salonServices: prevProfile.salonServices.filter(
+          service => service !== name
+        )
+      }));
+    }
   };
 
   useEffect(() => {
@@ -52,7 +70,8 @@ export default function Profile() {
     salonWebsite,
     salonServices,
     salonAbout,
-    hairSalonPics
+    hairSalonPics,
+    image
   } = profile;
 
   const handleChange = e => {
@@ -65,24 +84,69 @@ export default function Profile() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    delete profile.image;
     await axios.put("/api/user", profile);
     alert("Your info is updated");
   };
 
-  const logout = () => {
-    delete axios.defaults.headers.common["x-auth-token"];
-    localStorage.removeItem("token");
-    history.push("/");
+  // const logout = () => {
+  //   delete axios.defaults.headers.common["x-auth-token"];
+  //   localStorage.removeItem("token");
+  //   history.push("/");
+  // };
+
+  // const params = useParams();
+  const [imageToUpload, setImageToUpload] = useState("");
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await axios.get(`/api/user/${params.id}`);
+      setImageToUpload(res.data.image);
+    };
+    getUser();
+  }, []);
+
+  const handleUpload = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", imageToUpload);
+    const res = await axios.post(`/api/image/${params.id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    setProfile({ ...profile, image: res.data });
   };
 
   return (
     <div className="profile container">
-      <div className="text-center">
-        <img
-          src="https://static.thenounproject.com/png/15724-200.png"
-          alt="user"
-        />
+      <div>
+        {image ? (
+          <img
+            src={`data:${image.mimeType};base64,${new Buffer(
+              image.data
+            ).toString("base64")}`}
+            alt="user"
+            width="100"
+          />
+        ) : null}
+        <form onSubmit={handleUpload}>
+          <input
+            type="file"
+            onChange={e => {
+              setImageToUpload(e.target.files[0]);
+            }}
+          />
+          <button>Upload</button>
+          <div className="text-center">
+            {/* <img
+              src="https://static.thenounproject.com/png/15724-200.png"
+              alt="user"
+            /> */}
+          </div>
+        </form>
       </div>
+
       <form onSubmit={handleSubmit}>
         {accountType === "customer" ? (
           <div className="form-group">
@@ -242,17 +306,177 @@ export default function Profile() {
           </div>
         ) : null}
         {accountType === "salon" ? (
-          <div className="form-group">
-            <label htmlFor="salonServices">SERVICES</label>
+          <div>
+            <div>
+              <p>Check the services you provide below</p>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="blowOut"
+                  name="blowOut"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("blowOut")}
+                />
+                <label className="custom-control-label" htmlFor="blowOut">
+                  Blow Out
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="flatIron"
+                  name="flatIron"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("flatIron")}
+                />
+                <label className="custom-control-label" htmlFor="flatIron">
+                  Flat Iron
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="deepConditioningProteinTreatment"
+                  name="deepConditioningProteinTreatment"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes(
+                    "deepConditioningProteinTreatment"
+                  )}
+                />
+                <label
+                  className="custom-control-label"
+                  htmlFor="deepConditioningProteinTreatment"
+                >
+                  Deep Conditioning/Protein Treatment
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="relaxer"
+                  name="relaxer"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("relaxer")}
+                />
+                <label className="custom-control-label" htmlFor="relaxer">
+                  Relaxer
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="haircut"
+                  name="haircut"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("haircut")}
+                />
+                <label className="custom-control-label" htmlFor="haircut">
+                  Haircut
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="colorHighLights"
+                  name="colorHighLights"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("colorHighLights")}
+                />
+                <label
+                  className="custom-control-label"
+                  htmlFor="colorHighLights"
+                >
+                  Color/HighLights
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="extension"
+                  name="extension"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("extension")}
+                />
+                <label className="custom-control-label" htmlFor="extension">
+                  Extensions
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="naturalCurlyStyling"
+                  name="naturalCurlyStyling"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes(
+                    "naturalCurlyStyling"
+                  )}
+                />
+                <label
+                  className="custom-control-label"
+                  for="naturalCurlyStyling"
+                >
+                  Natural Curly Styling
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="twists"
+                  name="twists"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("twists")}
+                />
+                <label className="custom-control-label" htmlFor="twists">
+                  Twists
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="locs"
+                  name="locs"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("locs")}
+                />
+                <label className="custom-control-label" htmlFor="locs">
+                  Locs
+                </label>
+              </div>
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="braids"
+                  name="braids"
+                  onChange={handleCheckBox}
+                  checked={profile.salonServices.includes("braids")}
+                />
+                <label className="custom-control-label" htmlFor="braids">
+                  Braids
+                </label>
+              </div>
+            </div>
+
+            {/* <label htmlFor="salonServices">SERVICES:</label>
             <input
               type="text"
               className="form-control"
               id="salonServices"
-              placeholder="Enter your services here..."
-              value={salonServices}
+              placeholder="Enter your services here..." */}
+            {/* value={salonServices}
               name="salonServices"
-              onChange={handleChange}
-            />
+              onChange={handleChange} */}
+            {/* /> */}
           </div>
         ) : null}
         {accountType === "salon" ? (

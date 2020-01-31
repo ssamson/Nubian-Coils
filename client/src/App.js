@@ -43,31 +43,31 @@ function App() {
   return (
     <Router>
       <Header user={user} setUser={setUser} />
-
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/Contact">
-          <Contact />
-        </Route>
-        <Route exact path="/sign-in-sign-up">
-          <SignInSignUp setUser={setUser} />
-        </Route>
-        <PrivateRoute exact path="/Profile/:id">
-          <Profile />
-        </PrivateRoute>
-        <Route exact path="/search/:text">
-          <Salons />
-        </Route>
-        {/* <Route exact path="/Login">
+      <div className="main-body">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/Contact">
+            <Contact />
+          </Route>
+          <Route exact path="/sign-in-sign-up">
+            <SignInSignUp setUser={setUser} />
+          </Route>
+          <PrivateRoute exact path="/Profile/:id">
+            <Profile />
+          </PrivateRoute>
+          <Route exact path="/search/:text">
+            <Salons />
+          </Route>
+          {/* <Route exact path="/Login">
           <Login />
         </Route> */}
-        {/* <Route exact path="/Register">
+          {/* <Route exact path="/Register">
           <Register />
         </Route> */}
-      </Switch>
-
+        </Switch>
+      </div>
       <Footer />
     </Router>
   );

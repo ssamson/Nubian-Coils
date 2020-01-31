@@ -38,12 +38,12 @@ export default function Header({ user, setUser }) {
                     src={userIcon}
                     alt="user"
                     width="50"
-                    class="img-thumbnail"
+                    className="img-thumbnail"
                   />
                 </Link>
                 <button
                   type="button"
-                  class="btn btn-secondary btn-lg"
+                  className="btn btn-secondary btn-lg"
                   onClick={logout}
                 >
                   Logout

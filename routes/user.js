@@ -10,7 +10,7 @@ const User = require("../models/User");
 
 // Load user
 router.get("/load", auth, async (req, res) => {
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(req.user.id).populate("image");
   res.json(user);
 });
 
@@ -96,21 +96,21 @@ router.get("/search", async (req, res) => {
   const text = req.query.text;
   const data = await User.find({
     $text: { $search: text, $caseSensitive: false }
-  });
+  }).populate("image");
   res.json(data);
 });
 
 // Find user by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("image");
   res.json(user);
 });
 
 // Update user
 router.put("/", async (req, res) => {
   const newUser = req.body;
-  await User.findByIdAndUpdate(newUser._id, newUser);
+  await User.findByIdAndUpdate(newUser._id, { $set: { ...newUser } });
   res.json(newUser);
 });
 
