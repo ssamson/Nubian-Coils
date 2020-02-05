@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import SignInSignUp from "./components/SignInSignUp";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Salons from "./components/Salons";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -59,6 +60,9 @@ function App() {
           </PrivateRoute>
           <Route exact path="/search/:text">
             <Salons />
+          </Route>
+          <Route exact path="/salon/:id">
+            <SearchResults />
           </Route>
           {/* <Route exact path="/Login">
           <Login />

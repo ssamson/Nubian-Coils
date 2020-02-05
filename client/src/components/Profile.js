@@ -399,31 +399,29 @@ export default function Profile() {
                 <input
                   type="checkbox"
                   className="custom-control-input"
-                  id="extension"
-                  name="extension"
+                  id="weaves"
+                  name="weaves"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("extension")}
+                  checked={profile.salonServices.includes("weaves")}
                 />
-                <label className="custom-control-label" htmlFor="extension">
-                  Extensions
+                <label className="custom-control-label" htmlFor="weaves">
+                  Weaves
                 </label>
               </div>
               <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   className="custom-control-input"
-                  id="naturalCurlyStyling"
-                  name="naturalCurlyStyling"
+                  id="naturalHair"
+                  name="naturalHair"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes(
-                    "naturalCurlyStyling"
-                  )}
+                  checked={profile.salonServices.includes("naturalHair")}
                 />
                 <label
                   className="custom-control-label"
                   for="naturalCurlyStyling"
                 >
-                  Natural Curly Styling
+                  NATURAL HAIR
                 </label>
               </div>
               <div className="custom-control custom-checkbox">
