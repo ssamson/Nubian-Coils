@@ -1,4 +1,4 @@
 {
-  "mongo": "",
+  "mongo": "@ds047197.mlab.com:47197/heroku_r8ml6q3f",
   "jwtSecret": "nubian-coils"
 }
