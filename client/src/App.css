@@ -116,6 +116,7 @@ footer .fab {
   padding: 0 50px;
   padding-bottom: 30px;
   margin: auto;
+  margin-top: 20px;
 }
 
 .footer p {
@@ -159,10 +160,40 @@ footer .fab {
   margin-top: 15px;
 }
 
-/* .profile-container {
-
+/*User Profile*/
+/* textarea {
+  min-height: 5em;
+  max-height: 50vh;
+  width: 100%;
 } */
 
+.first-row-col {
+  height: 250px;
+}
+
+.first-row-col div {
+  height: 100%;
+}
+
+/*Search Results*/
+.banner-image-one {
+  background-image: url("images/two-women-lying-their-heads-on-woman-s-shoulder-2301283.jpg");
+  height: 500px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.banner-image-two {
+  background-image: url("images/woman-wearing-white-sleeveless-lace-shirt-935985.jpg");
+  height: 500px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.btn {
+  margin-left: 10px;
+}
 /* Media Queries */
 @media (max-width: 1100px) {
   .home {
@@ -187,6 +218,17 @@ footer .fab {
   }
 }
 
+.header-title:hover {
+  text-decoration: none;
+  color: black;
+}
+.result-name-container {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Mobile Devices */
 @media (max-width: 720px) {
   .footer {
@@ -197,5 +239,23 @@ footer .fab {
 
   .footer .subscribe-container {
     text-align: center;
+  }
+
+  .home-container {
+    padding-top: 140px;
+  }
+
+  .home div {
+    height: 400px;
+    margin-bottom: 2rem;
+  }
+  .home div a {
+    margin-top: 10rem;
+  }
+
+  .result-name-container {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 15px;
   }
 }

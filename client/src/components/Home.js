@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-// import WWB from "../images/woman-wearing-wearing-brown-earrings-3452557.jpg";
-// import WIW from "../images/woman-in-white-tube-top-3154827.jpg";
 import SFP from "../images/home/selective-focus-photo-of-woman-with-braided-hair-1374296.jpg";
 import WBL from "../images/home/woman-with-black-long-hair-smiling-2269890.jpg";
-// import WWY from "../images/woman-wearing-yellow-cardigan-3252316.jpg";
 import WWH from "../images/home/portrait-of-woman-wearing-headband-3065016.jpg";
 import WWW from "../images/home/woman-wearing-white-top-1181691.jpg";
 import { useHistory, Link } from "react-router-dom";
@@ -17,12 +14,12 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="home-container">
       <div className="jumbotron">
         <input
           type="text"
           name="search"
-          placeholder="Service, Stylist or Salon"
+          placeholder="Service or Salon"
           onChange={e => setSearchText(e.target.value)}
           className={`${searchText ? "extend" : null}`}
         />
@@ -58,7 +55,7 @@ export default function Home() {
 
         <div style={{ backgroundImage: `url(${WWH})` }}>
           <Link
-            to="/search/naturalhair"
+            to="/search/natural hair"
             className="btn btn-primary btn-lg"
             role="button"
           >

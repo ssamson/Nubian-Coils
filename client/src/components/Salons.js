@@ -25,6 +25,7 @@ export default function Salons() {
 
   return (
     <div>
+      <div className="banner-image-one"></div>
       {salons.map(salon => (
         <div className="search-result">
           <div className="image-container">
@@ -38,11 +39,11 @@ export default function Salons() {
               />
             ) : null}
           </div>
-          <div class="d-block">
+          <div className="d-block">
             <h2>{salon.salonName}</h2>
             <p>{salon.streetName}</p>
             <p>{`${salon.cityName}, ${salon.stateName}, ${salon.zipCode}`}</p>
-            <p>{salon.phoneNumber}</p>
+            <p>Phone:{salon.phoneNumber}</p>
             <Link to={`/salon/${salon._id}`} className="btn btn-secondary">
               View More Info
             </Link>

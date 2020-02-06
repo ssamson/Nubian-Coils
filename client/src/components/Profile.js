@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Profile() {
-  const history = useHistory();
   const [profile, setProfile] = useState({
     displayName: "",
     email: "",
@@ -17,7 +16,9 @@ export default function Profile() {
     cityName: "",
     zipCode: "",
     phoneNumber: "",
+    countryName: "",
     salonWebsite: "",
+    salonHours: "",
     salonServices: [],
     salonAbout: "",
     hairSalonPics: "",
@@ -33,17 +34,17 @@ export default function Profile() {
   };
 
   const handleCheckBox = async e => {
-    let { name, checked } = e.target;
+    let { name, checked, nextSibling } = e.target;
     if (checked) {
       setProfile(prevProfile => ({
         ...prevProfile,
-        salonServices: [...prevProfile.salonServices, name]
+        salonServices: [...prevProfile.salonServices, nextSibling.innerText]
       }));
     } else {
       setProfile(prevProfile => ({
         ...prevProfile,
         salonServices: prevProfile.salonServices.filter(
-          service => service !== name
+          service => service !== nextSibling.innerText
         )
       }));
     }
@@ -67,7 +68,9 @@ export default function Profile() {
     cityName,
     zipCode,
     phoneNumber,
+    countryName,
     salonWebsite,
+    salonHours,
     salonServices,
     salonAbout,
     hairSalonPics,
@@ -291,6 +294,18 @@ export default function Profile() {
             />
           </div>
         ) : null}
+        <div className="form-group">
+          <label htmlFor="countryName">COUNTRY</label>
+          <input
+            type="text"
+            className="form-control"
+            id="countryName"
+            placeholder="Enter country here..."
+            value={countryName}
+            name="countryName"
+            onChange={handleChange}
+          />
+        </div>
         {accountType === "salon" ? (
           <div className="form-group">
             <label htmlFor="salonWebsite">WEBSITE</label>
@@ -306,6 +321,24 @@ export default function Profile() {
           </div>
         ) : null}
         {accountType === "salon" ? (
+          <div className="form-group">
+            <label htmlFor="salonHours">HOURS OF OPERATION:</label>
+            {/* <input
+              type="text"
+              // className="form-control"
+              // id="salonHours" */}
+            <textarea
+              className="form-control"
+              rows="7"
+              id="salonHours"
+              placeholder="Enter your salon hours..."
+              value={salonHours}
+              name="salonHours"
+              onChange={handleChange}
+            />
+          </div>
+        ) : null}
+        {accountType === "salon" ? (
           <div>
             <div>
               <p>Check the services you provide below</p>
@@ -316,7 +349,7 @@ export default function Profile() {
                   id="blowOut"
                   name="blowOut"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("blowOut")}
+                  checked={profile.salonServices.includes("Blow Out")}
                 />
                 <label className="custom-control-label" htmlFor="blowOut">
                   Blow Out
@@ -329,7 +362,7 @@ export default function Profile() {
                   id="flatIron"
                   name="flatIron"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("flatIron")}
+                  checked={profile.salonServices.includes("Flat Iron")}
                 />
                 <label className="custom-control-label" htmlFor="flatIron">
                   Flat Iron
@@ -343,7 +376,7 @@ export default function Profile() {
                   name="deepConditioningProteinTreatment"
                   onChange={handleCheckBox}
                   checked={profile.salonServices.includes(
-                    "deepConditioningProteinTreatment"
+                    "Deep Conditioning/Protein Treatment"
                   )}
                 />
                 <label
@@ -360,7 +393,7 @@ export default function Profile() {
                   id="relaxer"
                   name="relaxer"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("relaxer")}
+                  checked={profile.salonServices.includes("Relaxer")}
                 />
                 <label className="custom-control-label" htmlFor="relaxer">
                   Relaxer
@@ -373,7 +406,7 @@ export default function Profile() {
                   id="haircut"
                   name="haircut"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("haircut")}
+                  checked={profile.salonServices.includes("Haircut")}
                 />
                 <label className="custom-control-label" htmlFor="haircut">
                   Haircut
@@ -386,13 +419,13 @@ export default function Profile() {
                   id="colorHighLights"
                   name="colorHighLights"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("colorHighLights")}
+                  checked={profile.salonServices.includes("Color/Highlights")}
                 />
                 <label
                   className="custom-control-label"
                   htmlFor="colorHighLights"
                 >
-                  Color/HighLights
+                  Color/Highlights
                 </label>
               </div>
               <div className="custom-control custom-checkbox">
@@ -402,7 +435,7 @@ export default function Profile() {
                   id="weaves"
                   name="weaves"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("weaves")}
+                  checked={profile.salonServices.includes("Weaves")}
                 />
                 <label className="custom-control-label" htmlFor="weaves">
                   Weaves
@@ -415,13 +448,10 @@ export default function Profile() {
                   id="naturalHair"
                   name="naturalHair"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("naturalHair")}
+                  checked={profile.salonServices.includes("Natural Hair")}
                 />
-                <label
-                  className="custom-control-label"
-                  for="naturalCurlyStyling"
-                >
-                  NATURAL HAIR
+                <label className="custom-control-label" for="naturalHair">
+                  Natural Hair
                 </label>
               </div>
               <div className="custom-control custom-checkbox">
@@ -431,7 +461,7 @@ export default function Profile() {
                   id="twists"
                   name="twists"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("twists")}
+                  checked={profile.salonServices.includes("Twists")}
                 />
                 <label className="custom-control-label" htmlFor="twists">
                   Twists
@@ -444,7 +474,7 @@ export default function Profile() {
                   id="locs"
                   name="locs"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("locs")}
+                  checked={profile.salonServices.includes("Locs")}
                 />
                 <label className="custom-control-label" htmlFor="locs">
                   Locs
@@ -457,7 +487,7 @@ export default function Profile() {
                   id="braids"
                   name="braids"
                   onChange={handleCheckBox}
-                  checked={profile.salonServices.includes("braids")}
+                  checked={profile.salonServices.includes("Braids")}
                 />
                 <label className="custom-control-label" htmlFor="braids">
                   Braids
@@ -491,7 +521,7 @@ export default function Profile() {
             />
           </div>
         ) : null}
-        {accountType === "salon" ? (
+        {/* {accountType === "salon" ? (
           <div className="form-group">
             <label htmlFor="hairSalonPics">HAIR/SALON PICTURES</label>
             <input
@@ -504,13 +534,13 @@ export default function Profile() {
               onChange={handleChange}
             />
           </div>
-        ) : null}
+        ) : null} */}
         <button type="submit" className="btn btn-dark">
           Save
         </button>
-        <button type="button" className="btn btn-danger">
+        <Link to="/" className="btn btn-danger" role="button">
           Cancel
-        </button>
+        </Link>
         {/* <button type="button" className="btn btn-secondary" onClick={logout}>
           Logout
         </button> */}

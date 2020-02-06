@@ -13,8 +13,8 @@ export default function Header({ user, setUser }) {
   };
   return (
     <nav className="navbar navbar-light navbar-expand-lg fixed-top">
-      <Link to="/" className="navbar-brand display-1">
-        NUBIAN COILS | Salon & Stylist Finder
+      <Link to="/" className="header-title">
+        <h1>NUBIAN COILS | Salon & Stylist Finder </h1>
       </Link>
       <button
         className="navbar-toggler"

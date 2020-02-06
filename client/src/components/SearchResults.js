@@ -20,28 +20,77 @@ export default function SearchResults() {
 
   return (
     <div>
-      <div className="jumbotron">
+      <div className="banner-image-two"></div>
+
+      <div className="result-name-container">
+        {salon.image ? (
+          <img
+            className="rounded float-left"
+            src={`data:${salon.image.mimeType};base64,${new Buffer(
+              salon.image.data
+            ).toString("base64")}`}
+          />
+        ) : null}
+
         <h1 className="display-4">{salon.salonName}</h1>
       </div>
+
       <div className="container">
-        <div className="row row-cols-2">
-          <div className="col">
+        <div className="row">
+          <div className="first-row-col col-sm-6">
             <div className="profile-container row mx-md-n5">
-              <img
-                src="../images/two-women-lying-their-heads-on-woman-s-shoulder-2301283.jpg"
-                className="rounded float-left"
-                alt="two-women-lying-their-heads-on-woman"
-              />
-              <div className="col px-md-5 salon-name container text-center">
-                <div className="p-3 border bg-light">
-                  <h4>Salon Name</h4>
-                  <p>Sub-heading</p>
-                  <p>Title</p>
+              <div className="col px-md-5 about-container text-center">
+                <div className="px-3 border bg-light">
+                  <h4>ABOUT</h4>
+                  <p>{salon.salonAbout}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col">Column</div>
+          <div className="first-row-col col-sm-6">
+            <div className="location-container row mx-md-n5">
+              <div className="col px-md-5 about-container text-center">
+                <div className="p-3 border bg-light">
+                  <h4>LOCATION</h4>
+                  <h6>{salon.salonName}</h6>
+                  <p>{salon.streetName}</p>
+                  <p>{`${salon.cityName}, ${salon.stateName}, ${salon.zipCode}, ${salon.countryName}`}</p>
+                  <p>Phone:{salon.phoneNumber}</p>
+                  <a href={salon.salonWebsite}> {salon.salonWebsite}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6 mt-3">
+            <div className="salon-services-container row mx-md-n5">
+              <div className="col px-md-5 salon-services-container text-center">
+                <div className="p-3 border bg-light">
+                  <h4>SALON SERVICES</h4>
+                  <ul>
+                    {salon.salonServices
+                      ? salon.salonServices.map(service => (
+                          <li key={service}>{service}</li>
+                        ))
+                      : null}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm-6 mt-3">
+            <div className="location-container row mx-md-n5">
+              <div className="col px-md-5 hours-container text-center">
+                <div className="p-3 border bg-light">
+                  <h4>HOURS OF OPERATION</h4>
+                  {salon.salonHours.split("\n").map(day => (
+                    <p>{day}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

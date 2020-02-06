@@ -14,7 +14,9 @@ const UserSchema = mongoose.Schema({
   stateName: { type: String, default: "" },
   zipCode: { type: String, default: "" },
   phoneNumber: { type: String, default: "" },
+  countryName: { type: String, default: "United States" },
   salonWebsite: { type: String, default: "" },
+  salonHours: { type: String, default: "" },
   salonServices: { type: Array, default: [] },
   salonAbout: { type: String, default: "" },
   hairSalonPics: { type: String, default: "" },
@@ -27,7 +29,11 @@ UserSchema.index({
   cityName: "text",
   stateName: "text",
   zipCode: "text",
-  salonServices: "text"
+  phoneNumber: "text",
+  salonWebsite: "text",
+  salonHours: "text",
+  salonServices: "text",
+  salonAbout: "text"
 });
 
 module.exports = mongoose.model("User", UserSchema);
